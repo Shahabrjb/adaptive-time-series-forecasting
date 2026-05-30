@@ -35,3 +35,16 @@ This project demonstrates experience in:
 - data preprocessing
 - model evaluation
 - reproducible ML workflows
+
+## Example Usage
+
+After installing the required packages, a forecasting experiment can be run with:
+
+```bash
+python src/train.py --csv data/example.csv --value-column value --window-size 14 --epochs 50
+
+The script creates supervised learning windows from a univariate time series, trains an MLP forecasting model, and reports MAE, RMSE, MAPE, and R².
+
+My Contribution
+
+I designed this repository to demonstrate a structured machine learning workflow for time-series forecasting, including data preprocessing, supervised window generation, neural-network model definition, and regression-based evaluation. The structure is inspired by my published work on adaptive deep learning for time-series prediction.
