@@ -95,8 +95,9 @@ The repository reports standard regression metrics:
 ## Related Research
 
 - [MLP-based Learnable Window Size for Bitcoin Price Prediction](https://github.com/Shahabrjb/MLP-based-Learnable-Window-Size-for-Bitcoin-Price-Prediction)
-- [Adaptive RAN Anomaly Detection — research overview](https://github.com/Shahabrjb/About-Me/blob/main/projects/adaptive-ran-anomaly-detection/README.md)
-- [Research portfolio](https://github.com/Shahabrjb/About-Me)
+- [Adaptive RAN Anomaly Detection](https://github.com/Shahabrjb/adaptive-ran-anomaly-detection)
+- [RF Optimization Platform](https://github.com/Shahabrjb/rf-optimization-platform)
+- [GitHub Profile](https://github.com/Shahabrjb)
 
 ## Author
 
