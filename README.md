@@ -1,50 +1,105 @@
 # Adaptive Time-Series Forecasting with Machine Learning
 
-This repository contains a machine learning workflow for adaptive time-series forecasting using neural-network-based models and classical baseline methods.
+A compact, reproducible Python project for experimenting with **neural-network-based time-series forecasting** and classical evaluation workflows.
 
-The project is inspired by my published research on deep learning-based forecasting, where an adaptive learnable window-size strategy was used to improve prediction performance under changing time-series conditions.
+The repository is inspired by my published research on **adaptive learnable window-size selection** for time-series prediction. The current public implementation provides the reusable forecasting foundation — preprocessing, supervised window generation, MLP/LSTM model definitions, training, and regression evaluation — while the full adaptive-window research method remains documented separately in the published work.
 
-## Project Goal
+## Current Public Implementation
 
-The goal of this project is to demonstrate a clean and reproducible forecasting pipeline, including:
+The repository currently includes:
 
-- time-series preprocessing
-- supervised learning window generation
-- neural-network-based forecasting
-- baseline model comparison
-- model evaluation using standard regression metrics
-- visualization of predicted versus observed values
+- CSV-based univariate time-series loading
+- Min-Max scaling
+- chronological supervised-window generation
+- MLP forecasting model
+- LSTM model definition for sequential experiments
+- train/test splitting without temporal shuffling
+- MAE, RMSE, MAPE, and R² evaluation utilities
+- command-line training workflow
 
-## Methods
+## Project Structure
 
-The repository is designed to support experiments with:
+```text
+adaptive-time-series-forecasting/
+├── src/
+│   ├── train.py       # data loading, windowing, training pipeline
+│   ├── model.py       # MLP and LSTM model definitions
+│   └── evaluate.py    # regression metrics and reporting
+├── requirements.txt
+├── LICENSE
+└── README.md
+```
 
-- Multilayer Perceptron models
-- LSTM-based forecasting models
-- Support Vector Regression baselines
-- ARIMA or statistical forecasting baselines
-- error analysis and model comparison
+## Installation
 
-## Relevance
+```bash
+python -m venv .venv
 
-This project demonstrates experience in:
+# Windows
+.venv\Scripts\activate
 
-- Python-based machine learning
-- time-series forecasting
-- neural network model design
-- data preprocessing
-- model evaluation
-- reproducible ML workflows
+# Linux / macOS
+source .venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+## Input Data
+
+Use a CSV file containing at least one numeric time-series column. For example:
+
+```csv
+value
+101.2
+102.4
+101.8
+103.1
+```
 
 ## Example Usage
 
-After installing the required packages, a forecasting experiment can be run with:
-
 ```bash
 python src/train.py --csv data/example.csv --value-column value --window-size 14 --epochs 50
+```
 
-The script creates supervised learning windows from a univariate time series, trains an MLP forecasting model, and reports MAE, RMSE, MAPE, and R².
+The current `train.py` workflow creates chronological supervised windows, trains the public MLP model, predicts the held-out final portion of the series, reverses the scaling transformation, and reports regression metrics.
 
-My Contribution
+## Available Models
 
-I designed this repository to demonstrate a structured machine learning workflow for time-series forecasting, including data preprocessing, supervised window generation, neural-network model definition, and regression-based evaluation. The structure is inspired by my published work on adaptive deep learning for time-series prediction.
+`src/model.py` currently defines:
+
+- **MLP** — dense neural network for fixed-length lag vectors
+- **LSTM** — recurrent model definition for sequence-based experiments
+
+The public command-line trainer currently uses the MLP path. The LSTM definition is available for further experiments and extension.
+
+## Research Background
+
+My published work, **“MLP-based Learnable Window Size for Bitcoin Price Prediction” (Applied Soft Computing, 2022)**, investigated a two-stage framework in which a first neural model learns an appropriate historical input-window size and a second neural model performs forecasting.
+
+That research motivates a broader question that continues across my current work:
+
+> Can machine-learning systems adapt important modelling choices to changing data conditions instead of relying on one permanently fixed setting?
+
+This same research direction now extends into my work on adaptive anomaly detection for wireless-network optimization.
+
+## Evaluation
+
+The repository reports standard regression metrics:
+
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- Mean Absolute Percentage Error (MAPE)
+- R²
+
+## Related Research
+
+- [MLP-based Learnable Window Size for Bitcoin Price Prediction](https://github.com/Shahabrjb/MLP-based-Learnable-Window-Size-for-Bitcoin-Price-Prediction)
+- [Adaptive RAN Anomaly Detection — research overview](https://github.com/Shahabrjb/About-Me/blob/main/projects/adaptive-ran-anomaly-detection/README.md)
+- [Research portfolio](https://github.com/Shahabrjb/About-Me)
+
+## Author
+
+**Shahab Rajabi**  
+Machine Learning & RAN Optimization Engineer  
+Research interests: adaptive ML, time-series forecasting, anomaly detection, and AI for wireless networks.
